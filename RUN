@@ -1,0 +1,1 @@
+PYTHONPATH=/home/poleposit/django-poleposition:/home/poleposit/poleposition:/home/poleposit/poleposition/poleposition:. python manage.py runserver 127.0.0.1:62140

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}style_challenge.css" />
+        <title>Pole-position</title>
+        <script src="{{ STATIC_URL }}scrollfix.js" type="text/javascript"></script>
+    </head>
+
+    <body onunload="unloadP('UniquePageNameHereScroll')" onload="loadP('UniquePageNameHereScroll')"> 
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <!-- <img src="images/Pole_position_logo.png" alt="Logo de Pole position" id="logo" /> -->
+                    <h1>Pole-position</h1>
+                    <h2>Choose the best way to reach the top</h2>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href={%  url "connexion.views.deconnexion" %}><span>Deconnexion</span></a></li>
+                    </ul>
+                </nav>
+            </header>
+            
+            <hr>
+            
+            <div id="banniere_image">
+                <div id="banniere_description">
+                    Best solutions for high performances
+                    <a href="mailto:simon.goffin@outlook.com" class="bouton_rouge">Contact us <img src="{{ STATIC_URL }}logo/flecheblanchedroite.png" alt="" /></a>
+                </div>
+            </div>
+            
+            <section>
+                <article>
+                    <div class="one">
+                        <div id="game" class="two">
+                            <div class="three">
+                                <h2>Chiffres</h2>
+                                <h2><p id="demo"></p></h2>
+                                <script>
+                                    var xx=new Date();
+                                    var myVar=setInterval(function(){myTimer()},1000);
+                                    function myTimer()
+                                    {
+                                        var dd=new Date();
+                                        document.getElementById("demo").innerHTML=parseInt((dd-xx)/1000);
+                                    }
+                                </script>
+                            </div>
+                            <div class="three">
+                                <div class="five">
+                                    <div id="chiffres">{{ch1}}</div>
+                                    <div id="chiffres">{{ch2}}</div>
+                                    <div id="chiffres">{{ch3}}</div>
+                                    <div id="chiffres">{{ch4}}</div>
+                                    <div id="chiffres">{{ch5}}</div>
+                                    <div id="chiffres">{{ch6}}</div>
+                                    <div id="compte">{{compte}}</div>
+                                </div>
+                            </div>
+                            <div class="three">
+                            </div>
+                        </div>
+                        <div id="definition" class="two">
+                                <form action="{% url "challenge.views.valide_chiffres" %}" method="post">
+                                {% csrf_token %}
+                                {% for f in form %}
+                                    <p>{{f.label}}{{f}}</p>
+                                {% endfor %}
+                                <input id="boutons" style="cursor:pointer;" type="submit" value="valide"/>
+                                </form>
+                            
+                        </div>
+                    </div>
+                </article>
+                <aside>
+                    <h1><a href="About_us.html">About us</a></h1>
+                    <p id="monde"><img src="{{ STATIC_URL }}logo/monde.png" alt="Monde" /></p>
+                    <h2>Where</h2>
+                    <p>Bruxelles, Belgium</p>
+                    <h2>Telephone</h2>
+                    <p>+32/494.072.438</p>
+                    <p><a href="mailto:simon.goffin@outlook.com"><img src="{{ STATIC_URL }}logo/mail.png" alt="Mail"/></a> <a href="#"><img src="{{ STATIC_URL }}logo/linkedin.png" alt="Linkedin" /></a></p>
+                </aside>
+            </section>
+            
+            <hr>
+            
+            
+        </div>
+    </body>
+</html>

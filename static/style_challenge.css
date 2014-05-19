@@ -1,0 +1,465 @@
+/* Définition des polices personnalisées */
+
+@font-face
+{
+    font-family: 'BallparkWeiner';
+    src: url('polices/ballpark.eot');
+    src: url('polices/ballpark.eot?#iefix') format('embedded-opentype'),
+         url('polices/ballpark.woff') format('woff'),
+         url('polices/ballpark.ttf') format('truetype'),
+         url('polices/ballpark.svg#BallparkWeiner') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Dayrom';
+    src: url('polices/dayrom.eot');
+    src: url('polices/dayrom.eot?#iefix') format('embedded-opentype'),
+         url('polices/dayrom.woff') format('woff'),
+         url('polices/dayrom.ttf') format('truetype'),
+         url('polices/dayrom.svg#Dayrom') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Eléments principaux de la page */
+
+body
+{
+    /*background: url('images/fond_jaune.png');*/
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: #181818;
+}
+
+#bloc_page
+{
+    width: 900px;
+    margin: auto;
+}
+
+section h1, footer h1, nav a
+{
+    font-family: Dayrom, serif;
+    font-weight: normal;
+    /*text-transform: uppercase;*/
+}
+
+
+/* Header */
+
+hr
+{
+    border: 2px solid black;
+}
+
+#titre_principal
+{
+    width: 90%;
+    height: 250px; 
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid black;
+    margin:10px
+    background-color:white;
+    background-image:url(logo/Pole.png);
+    background-position:right bottom;
+    background-repeat:no-repeat;
+    z-index: 2;
+}
+
+header h1
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 2.5em;
+    font-weight: normal;
+}
+
+#logo, header h1
+{
+    display: inline-block;
+    margin-bottom: 0px;
+    vertical-align: top;
+    z-index: 2;
+}
+
+header h2
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 2.0em;
+    margin-top: 0px;
+    font-weight: normal;
+}
+
+/* Navigation */
+
+nav
+{
+    display: inline-block;
+    width: 740px;
+    text-align: left;
+}
+
+nav ul
+{
+    list-style-type: none;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-right: 15px;
+}
+
+li span
+{
+    font-family: 'BallparkWeiner', serif;
+}
+
+nav a
+{
+    font-size: 1.3em;
+    color: #181818;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #760001;
+    border-bottom: 3px solid #760001;
+}
+
+/* Bannière */
+
+#banniere_image
+{
+    margin-top: 15px;
+    height: 200px;
+    border-radius: 5px;
+    background: url('logo/damier.png');
+    position: relative;
+    box-shadow: 0px 4px 4px #1c1a19;
+    margin-bottom: 25px;
+    border: 2px solid black;
+}
+
+#banniere_description
+{
+    position: absolute;
+    bottom: 0;
+    border-radius: 0px 0px 5px 5px;
+    width: 99.5%;
+    height: 33px;
+    padding-top: 15px;
+    padding-left: 4px;
+    background-color: rgb(24,24,24); /* Pour les anciens navigateurs */
+    background-color: rgba(24,24,24,0.8);
+    color: white;
+    font-size: 0.8em;
+    border: 2px solid black;
+}
+
+.bouton_rouge
+{
+    display: inline-block;
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background: url('logo/fond_degraderouge.png') repeat-x;
+    border: 1px solid #760001;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 3px 8px 0px 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.bouton_rouge img
+{
+    border: 0;
+}
+
+/* Corps */
+
+article, aside
+{
+    display: inline-block;
+    vertical-align: top;
+    text-align: justify;
+}
+
+.one
+{
+    position:relative;
+    top:-15px;
+    width: 100%;
+    height: 90%; 
+    margin:5px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.two
+{
+    width: 90%;
+    height: 250px;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid black;
+    margin:5px
+    
+}
+
+.three
+{
+    width: 95%;
+    height: 30%;
+    border-radius: 5px 5px 5px 5px;
+    /*border: 2px solid white;*/
+    margin:5px
+    
+}
+
+.four
+{
+    width: 30%;
+    height: 80%; 
+    /*border: 2px solid white;*/
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    vertical-align: top;
+    margin:5px
+}
+
+.five
+{
+    width: 100%;
+    height: 80%; 
+    /*border: 2px solid white;*/
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    vertical-align: top;
+    margin:5px
+}
+
+#id_solution {
+    width: 200px;
+    height: 40px;
+    /*font-family: 'BallparkWeiner', serif;*/
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: normal;
+    border: 1px solid #black;
+}
+
+#lettres {
+    float: left;
+    width: 40px;
+    height: 40px;
+    /*font-family: 'BallparkWeiner', serif;*/
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: normal;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    display: block;
+}
+
+#chiffres {
+    float: left;
+    width: 40px;
+    height: 40px;
+    /*font-family: 'BallparkWeiner', serif;*/
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: normal;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    display: block;
+}
+
+#compte {
+    float: left;
+    width: 60px;
+    height: 40px;
+    /*font-family: 'BallparkWeiner', serif;*/
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: normal;
+    border: 1px solid black;
+    border: 4px solid #A80000 ;
+    background-color: white;
+    color: black;
+    display: block;
+}
+
+#cache{
+    visibility:hidden;
+}
+
+#solution{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 1.2em;
+}
+
+#valide{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 1.2em;
+}
+
+h2 a
+{
+    text-decoration:none;
+    color:black;
+}
+
+#game
+{
+    background-color:black;
+    color:white;
+    background-image:url(logo/chrono.jpg);
+    background-position:left bottom;
+    background-repeat:no-repeat;
+    z-index: 1;
+}
+
+#boutons
+{
+    font-family: 'BallparkWeiner', serif;
+    background-color:white;
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: normal;
+    border: 1px solid black;
+}
+
+#definition
+{
+    background-color:white;
+    /*background-image:url(logo/business.jpg);*/
+    background-position:left bottom;
+    background-repeat:no-repeat;
+    z-index: 1;
+}
+
+
+
+#game a
+{
+    color:white;
+}
+
+article h2
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 1.8em;
+    z-index: 2;
+    text-align: center;
+}
+
+article
+{
+    width: 625px;
+    margin-right: 15px;
+}
+
+.ico_categorie
+{
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+article p
+{
+    font-size: 0.8em;
+}
+
+aside
+{
+    width: 231px;
+    height: 90%;
+    background-color: white;
+    box-shadow: 0px 2px 5px #1c1a19;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 10px;
+    color: black;
+    font-size: 0.9em;
+}
+
+aside h1
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 1.8em;
+}
+
+aside a
+{
+    text-decoration:none;
+    color:black;
+}
+
+aside h2
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 1.5em;
+}
+
+#monde
+{
+    text-align: center;
+}
+
+aside img
+{
+    margin-right: 5px;
+}
+
+/* Footer */
+
+footer
+{
+    padding-top: 25px;
+}
+
+footer p, footer ul
+{
+    font-size: 0.8em;
+}
+
+footer h1
+{
+    font-size: 1.1em;
+}
+
+#Consulting_services,#Domains,#About_us
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#Consulting_services,#Domains
+{
+    width: 31%;
+}
+
+#Consulting_services ul,#Domains ul,#About_us ul
+{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0;
+    width: 48%;
+    list-style-image: url('logo/ico_liensexterne.png');
+    padding-left: 2px;
+}
+
+#Consulting_services a,#Domains a,#About_us a
+{
+    text-decoration: none;
+    color: #760001;
+}

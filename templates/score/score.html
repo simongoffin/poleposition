@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}style_score.css" />
+        <title>Pole-position</title>
+        <script src="{{ STATIC_URL }}scrollfix.js" type="text/javascript"></script>
+    </head>
+
+    <body onunload="unloadP('UniquePageNameHereScroll')" onload="loadP('UniquePageNameHereScroll')"> 
+        <div id="bloc_page">
+            <header>
+                <div id="titre_principal">
+                    <!-- <img src="images/Pole_position_logo.png" alt="Logo de Pole position" id="logo" /> -->
+                    <h1>Pole-position</h1>
+                    <h2>Choose the best way to reach the top</h2>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href={%  url "chiffres.views.home" %}><span>Chiffres</span></a></li>
+                        <li><a href={%  url "game.views.home" %}><span>Lettres</span></a></li>
+                        <li><a href={%  url "challenge.views.intro" %}><span>Challenge</span></a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href={%  url "vous.views.vous" %}><span>Vous</span></a></li>
+                        <li><a href={%  url "connexion.views.deconnexion" %}><span>Deconnexion</span></a></li>
+                        {%else%}
+                        <li><a href={%  url "connexion.views.connexion" %}><span>Connexion</span></a></li>
+                        {%endif%}
+                    </ul>
+                </nav>
+            </header>
+            
+            <hr>
+            
+            <div id="banniere_image">
+                <div id="banniere_description">
+                    Best solutions for high performances
+                    <a href="mailto:simon.goffin@outlook.com" class="bouton_rouge">Contact us <img src="{{ STATIC_URL }}logo/flecheblanchedroite.png" alt="" /></a>
+                </div>
+            </div>
+            
+            <section>
+                <article>
+                    <div class="one">
+                        <div id="game" class="two">
+                            <h2>Scores</h2>
+                            <p id="score">1. {{l0}}</p>
+                            <p id="score">2. {{l1}}</p>
+                            <p id="score">3. {{l2}}</p>
+                            <p id="score">4. {{l3}}</p>
+                            <p id="score">5. {{l4}}</p>
+                        </div>
+                        <div id="definition" class="two">
+                            
+                        </div>
+                    </div>
+                </article>
+                <aside>
+                    <h1><a href="About_us.html">About us</a></h1>
+                    <p id="monde"><img src="{{ STATIC_URL }}logo/monde.png" alt="Monde" /></p>
+                    <h2>Where</h2>
+                    <p>Bruxelles, Belgium</p>
+                    <h2>Telephone</h2>
+                    <p>+32/494.072.438</p>
+                    <p><a href="mailto:simon.goffin@outlook.com"><img src="{{ STATIC_URL }}logo/mail.png" alt="Mail"/></a> <a href="#"><img src="{{ STATIC_URL }}logo/linkedin.png" alt="Linkedin" /></a></p>
+                </aside>
+            </section>
+            
+            <hr>
+            
+            
+        </div>
+    </body>
+</html>
