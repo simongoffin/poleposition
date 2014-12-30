@@ -4,6 +4,7 @@ import sys
 import os
 import time
 from dico import dic,box,dict_full
+from celery import current_task
 
 from .search import *
 
@@ -23,6 +24,7 @@ class LettresProblem(Problem):
         return False
             
     def successor(self, state):
+        current_task.update_state(state='PROGRESS', meta={'current': self.symetrie, 'total': 2600000})
         for valeur1 in state:
             temp=state[:]
             temp=temp[0:temp.index(valeur1)]+temp[temp.index(valeur1)+1:len(temp)]
@@ -31,7 +33,7 @@ class LettresProblem(Problem):
                     if not valeur1+valeur2 in self.dico:
                         self.dico[valeur1+valeur2]=1
                         check=possible(valeur1,valeur2,self.taille)
-                        self.symetrie+=1
+                        #self.symetrie+=1
                         if check[0]:
                             newmove=temp[:]
                             newmove=newmove[0:newmove.index(valeur2)]+newmove[newmove.index(valeur2)+1:len(newmove)]
@@ -44,7 +46,19 @@ class LettresProblem(Problem):
                                     self.solution.append(seq)
                             etape=valeur1+' '+'+'+' '+valeur2+' '+'='+' '+valeur1+valeur2
                             yield (etape,newmove)
-                        else: continue
+                        else:
+                            x = len(valeur1+valeur2)
+                            self.symetrie+=ast(x)
+                    else:
+                        x = len(valeur1+valeur2)
+                        self.symetrie+=ast(x)
+
+def ast(x):
+    result = 0
+    while x<10:
+        result+=math.factorial(10-x)
+        x+=1
+    return result
                     
 def possible(valeur1,valeur2,taille):
     seq=valeur1+valeur2

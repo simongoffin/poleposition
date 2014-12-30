@@ -27,6 +27,8 @@ ALLOWED_HOSTS = ['poleposition.sites.djangoeurope.com']
 
 SITE_ID = 1
 
+BROKER_URL = 'django://'
+
 
 # Application definition
 
@@ -43,7 +45,9 @@ INSTALLED_APPS = (
     'chiffres',
     'challenge',
     'score',
-    'vous'
+    'vous',
+    'djcelery',
+    'kombu.transport.django',
 )
 
 MIDDLEWARE_CLASSES = (

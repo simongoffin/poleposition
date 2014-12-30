@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from game.forms import LettersForm
@@ -7,7 +7,9 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from connexion.models import Connexion
-
+from tasks import do_work
+import json
+from celery.result import AsyncResult
 
 lettres=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 voyelles=['a','e','i','o','u','y']
@@ -25,7 +27,7 @@ def auteur2(request):
 
 @login_required(login_url='/connexion/connexion/')
 def home(request):
-    from Algo.core import run
+    #from Algo.core import run
     from Algo.parser import requete_mot
     import sys
     import random
@@ -49,24 +51,39 @@ def home(request):
             if arg1==arg2==arg3==arg4==arg5==arg6==arg7==arg8==arg9:
                 return render(request, 'game/home.html',locals())
             tuple=(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9)
-            resultat=run(tuple)
-            longueur_r=len(resultat)
-            if longueur_r>0 and not resultat[0]=='':
-                print resultat
-                print longueur_r
-                solution=True
-                res=resultat[random.randrange(0,longueur_r)]
-                try:
-                    definition= requete_mot(res)
-                except:
-                    definition="Définition introuvable."
-                res=res.decode('utf8')
-            return render(request, 'game/home.html',locals())
+            job = do_work.delay(tuple)
+            return HttpResponseRedirect(reverse('poll_state') + '?job=' + job.id)
+            #resultat=run(tuple)
+            # longueur_r=len(resultat)
+            # if longueur_r>0 and not resultat[0]=='':
+            #     print resultat
+            #     print longueur_r
+            #     solution=True
+            #     res=resultat[random.randrange(0,longueur_r)]
+            #     try:
+            #         definition= requete_mot(res)
+            #     except:
+            #         definition="Définition introuvable."
+            #     res=res.decode('utf8')
+            # return render(request, 'game/home.html',locals())
 
     else: # Si ce n'est pas du POST, c'est probablement une requête GET
         form = LettersForm()  # Nous créons un formulaire vide
 
     return render(request, 'game/home.html',locals())
+
+def poll_state(request):
+    """ A view to report the progress to the user """
+    if 'job' in request.GET:
+        job_id = request.GET['job']
+    else:
+        return HttpResponse('No job id given.')
+
+    job = AsyncResult(job_id)
+    data = {}
+    data['job'] = job_id
+    data['state'] = job.result or job.state
+    return HttpResponse(json.dumps(data), content_type='application/json')
     
 @login_required(login_url='/connexion/connexion/')
 def random(request):

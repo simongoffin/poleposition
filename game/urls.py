@@ -6,4 +6,5 @@ urlpatterns = patterns('game.views',
     url(r'^home/$', 'home'),
     url(r'^ready/$', 'home'),
     url(r'^random$', 'random'),
+    url(r'^poll_state/$', 'poll_state', name="poll_state"),
 )
