@@ -52,7 +52,9 @@ def home(request):
                 return render(request, 'game/home.html',locals())
             tuple=(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9)
             job = do_work.delay(tuple)
-            return HttpResponseRedirect(reverse('poll_state') + '?job=' + job.id)
+            compute = True
+            job_id = job.id
+            #return HttpResponseRedirect(reverse('poll_state') + '?job=' + job.id)
             #resultat=run(tuple)
             # longueur_r=len(resultat)
             # if longueur_r>0 and not resultat[0]=='':
@@ -65,7 +67,7 @@ def home(request):
             #     except:
             #         definition="Définition introuvable."
             #     res=res.decode('utf8')
-            # return render(request, 'game/home.html',locals())
+            return render(request, 'game/home.html',locals())
 
     else: # Si ce n'est pas du POST, c'est probablement une requête GET
         form = LettersForm()  # Nous créons un formulaire vide
@@ -76,6 +78,7 @@ def poll_state(request):
     """ A view to report the progress to the user """
     if 'job' in request.GET:
         job_id = request.GET['job']
+        print job_id
     else:
         return HttpResponse('No job id given.')
 
@@ -83,6 +86,7 @@ def poll_state(request):
     data = {}
     data['job'] = job_id
     data['state'] = job.result or job.state
+    print data
     return HttpResponse(json.dumps(data), content_type='application/json')
     
 @login_required(login_url='/connexion/connexion/')

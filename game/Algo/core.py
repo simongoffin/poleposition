@@ -24,7 +24,8 @@ class LettresProblem(Problem):
         return False
             
     def successor(self, state):
-        current_task.update_state(state='PROGRESS', meta={'current': self.symetrie, 'total': 2600000})
+        y = self.symetrie/1000000
+        current_task.update_state(state='PROGRESS', meta={'current': y, 'total': 100})
         for valeur1 in state:
             temp=state[:]
             temp=temp[0:temp.index(valeur1)]+temp[temp.index(valeur1)+1:len(temp)]
@@ -33,7 +34,6 @@ class LettresProblem(Problem):
                     if not valeur1+valeur2 in self.dico:
                         self.dico[valeur1+valeur2]=1
                         check=possible(valeur1,valeur2,self.taille)
-                        #self.symetrie+=1
                         if check[0]:
                             newmove=temp[:]
                             newmove=newmove[0:newmove.index(valeur2)]+newmove[newmove.index(valeur2)+1:len(newmove)]
@@ -55,8 +55,8 @@ class LettresProblem(Problem):
 
 def ast(x):
     result = 0
-    while x<10:
-        result+=math.factorial(10-x)
+    while x<9:
+        result+=math.factorial(9-x)
         x+=1
     return result
                     
@@ -87,7 +87,7 @@ def run(tuple):
     debut=time.time()
     #node=breadth_first_tree_search(problem)
     node=depth_first_tree_search(problem)
-    resultat=problem.solution
+    resultat=problem.solution[0]
     fin=time.time()
     print fin-debut
     return resultat
@@ -96,5 +96,3 @@ def run(tuple):
 if __name__ == "__main__":    
     tuple=('v','o','e','u','n','b','e','t','l')
     v=run(tuple)
-    print v
-    
